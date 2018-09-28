@@ -168,7 +168,7 @@ $$Z = \frac{X - \mu}{\sigma}$$
 \begin{align*}
 P(X > 8) &= P\left( \frac{X-5}{3} > \frac{8 - 5}{3}\right)\\
 &= P(Z > 1) \\
-&= 0.16
+&= 0.1587
 \end{align*}}
 \end{itemize}
 \end{frame}
@@ -247,7 +247,7 @@ P(156 < X < 164) &= P\bigg(\frac{156-160}{8} < \frac{X - 160}{8} < \frac{164-160
 \begin{align*}
 \overline{X} &\sim N(160, 64/16 = 4) \\
 P(156 < \overline{X} < 164) &= P(-2 < Z < 2)\\
-&= 0.95
+&\approx 0.95
 \end{align*}
 \end{itemize}
 \end{frame}
@@ -274,6 +274,54 @@ P(156 < \overline{X} < 164) &= P(-2 < Z < 2)\\
 \vspace*{-0.25cm}
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Central Limit Theorem}
+\begin{itemize}
+\setlength{\itemsep}{15pt}
+\item[] {\themecol The Central Limit Theorem:}
+\item Suppose $X_1, X_2, \dots, X_n$ are \emph{iid} with mean $\mu$ and variance $\sigma^2$. 
+\item Then, for large $n$
+\begin{align*}
+\themecol T_n \sim N(n\mu, n\sigma^2)\quad \text{and} \quad \bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)
+\end{align*}
+{\centering \emph{no matter the distribution of the individual} $X_i$}
+\item Allows approximation of all distributions using the normal distribution if you know the mean and variance.
+\item<2->[Note:] \small if $X_1, \dots, X_n$ are normally distributed, then this applies for \emph{all} $n$, not just large $n$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Central Limit Theorem: Example}
+\begin{itemize}
+\setlength{\itemsep}{15pt}
+\item<1-> Let $X_1, X_2,\dots, X_n \stackrel{iid}{\sim} Binomial(1, \theta)$.
+\item<2-> For each $X_i$, $Mean(X_i) = \theta$ and $Var(X_i) = \theta(1-\theta).$
+\item<3-> The sum is: $T_n = X_1 + X_2 + \cdots + X_n$.
+\item<4-> The proportion is:
+ $$P = \frac{X_1 + \cdots + X_n}{n}.$$
+\item<6-> For large $n$, 
+\begin{align*}
+T_n &\sim N\left(n\theta, n\theta[1-\theta]\right) \\[1.5 em]
+P &\sim N\left( \theta, \frac{\theta(1-\theta)}{n}\right)
+\end{align*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Central Limit Theorem: Problem}
+\begin{itemize}
+\item<1-> Suppose you are rolling a fair die 1000 times. Calculate the numbers $A$ and $B$ such that the average of the 1000 rolls is between $A$ and $B$ with probability approximately 0.95. You may assume the mean of one roll is 3.5 and the variance is 35/12.
+\item<2->[] {\color{red}
+\vspace*{-0.5cm}
+\begin{align*}
+&Mean(X_i) = 3.5, \quad Var(X_i) = 35/12 \\
+&\overline{X} \sim N\bigg(\mu, \frac{\sigma^2}{n}\bigg) = N\bigg(3.5, \frac{35}{12000} \bigg) \quad \text{by CLT}\\
+&A = -2\sigma + \mu = -2\sqrt{35/12000} + 3.5 \approx 3.392 \\
+&B = 2\sigma + \mu = 2\sqrt{35/12000} + 3.5 \approx 3.608
+\end{align*}}
+\vspace*{-0.25cm}
+\end{itemize}
+\end{frame}
+
+
 
 
 
