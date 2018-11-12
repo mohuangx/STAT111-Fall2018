@@ -135,7 +135,7 @@ Slides (adapted from Gemma Moran): \url{github.com/mohuangx/STAT111-Fall2018} }
 \begin{itemize}
 \item The \textbf{p-value} is the probability under $H_0$ of obtaining a result of more or equal extremeness than the observed test statistic.
 \item One-sided: p-value = $P(X \geq x)$ or $P(X \leq x)$.
-\item[] Two-sided: p-value = $2P(X \geq \abs{x})$ (for symmetric distributions)
+\item[] Two-sided: p-value = $2P(X \geq x)$ or $2P(X \leq x)$ depending on if $x$ is greater than or less than the mean.
 \item Reject $H_0$ if p-value is less than $\alpha$.
 \end{itemize}
 \end{itemize}
@@ -146,18 +146,22 @@ Slides (adapted from Gemma Moran): \url{github.com/mohuangx/STAT111-Fall2018} }
 \begin{itemize}
 \setlength{\itemsep}{5pt}
 \item I want to test the hypothesis a coin is unbiased. I observed 1,070 heads out of 2,000 tosses. Let $\theta$ be the probability of tossing a head. Using approach I, calculate the critical point(s) and decide whether to reject $H_0$ at $\alpha = 0.05$.
-\item<2->[Ans:] \color{red} $H_0: \theta = 0.5$ vs. $H_1: \theta \neq 0.5$.
+\footnotesize
+\item<2->[Ans:] \color{red} $H_0: \theta = 0.5$ vs. $H_1: \theta \neq 0.5$. Two-sided test.
 \item<2->[] \color{red} Test-statistic: $X$ is the number of heads tossed. $x = 1070$.
 \item<2->[] \color{red} Under $H_0$, $\mu = n\theta = 2000(0.5) = 1000$ and $\sigma^2 = n\theta(1-\theta) = 500$.
-\item<2->[] \color{red} We have:
-\vspace*{-1ex}
-\small
+\item<2->[] \color{red} We want to find critical points $A$ and $B$ at $\alpha = 0.05$:
 \begin{align*}
-P(Z \leq -1.96) = 0.025  &\text{ and } P(Z\geq 1.96) = 0.025\\
-P\left(\frac{X - 1000}{\sqrt{500}} \leq -1.96\right) =0.025 &\text{ and } P\left(\frac{X - 1000}{\sqrt{500}} \geq1.96\right)=0.025 \\
-P(X \leq 956)=0.025 &\text{ and } P(X \geq 1044) = 0.025
+P(X \leq A) = 0.025 &\text{ and } P(X \geq B) = 0.025\\
+P\left(\frac{X - 1000}{\sqrt{500}} \leq \frac{A - 1000}{\sqrt{500}}\right) =0.025 &\text{ and } P\left(\frac{X - 1000}{\sqrt{500}} \geq \frac{B - 1000}{\sqrt{500}} \right)=0.025 \\
+P\bigg(Z \leq \frac{A - 1000}{\sqrt{500}}\bigg) = 0.025  &\text{ and } P\bigg(Z\geq \frac{B - 1000}{\sqrt{500}}\bigg) = 0.025\\
 \end{align*}
-\item<2->[] \color{red} So critical region is $X \leq 956$ and $X \geq 1044$. Since 1,070 is in the critical region, we reject $H_0$.
+\vspace*{-7ex}
+\item<2->[] \color{red} Looking at the z-chart for $z$ where the probabilities are 0.025 and 0.975, we see that
+\[
+\frac{A-1000}{\sqrt{500}} = -1.96 \text{ and } \frac{B - 1000}{\sqrt{500}} = 1.96
+\]
+\item<2->[] \color{red} Solving for $A$ and $B$, we get $A = 956$ and $B = 1,044$. Since 1,070 is in the critical region, we reject $H_0$.
 \end{itemize}
 \end{frame}
 
@@ -165,15 +169,18 @@ P(X \leq 956)=0.025 &\text{ and } P(X \geq 1044) = 0.025
 \begin{itemize}
 \setlength{\itemsep}{5pt}
 \item I want to test the hypothesis a coin is unbiased. I observed 1,070 heads out of 2,000 tosses. Let $\theta$ be the probability of tossing a head. Calculate the p-value and decide whether to reject $H_0$ at $\alpha = 0.05$.
-\item<2->[Ans:] \color{red} $H_0: \theta = 0.5$ vs. $H_1: \theta \neq 0.5$.
+\item<2->[Ans:] \color{red} $H_0: \theta = 0.5$ vs. $H_1: \theta \neq 0.5$. Two-sided test.
 \item<2->[] \color{red} Test-statistic: $X$ is the number of heads tossed. $x = 1070$.
 \item<2->[] \color{red} Under $H_0$, $\mu = n\theta = 2000(0.5) = 1000$ and $\sigma^2 = n\theta(1-\theta) = 500$.
-\item<2->[] \color{red} We standardize:
+\item<2->[] \color{red} We calculate $p\text{-value} = 2P(X \geq 1070)$ since 1070 is greater than the mean.
 \vspace*{-1ex}
-\small
-$$z_{obs} = \frac{X - 1000}{\sqrt{500}} = \frac{1070 - 1000}{\sqrt{500}} = 3.13.$$
-For a two-sided test:
-$$\text{p-value} = 2\times P(Z > |3.13|) = 2 \times (1 - 0.9991) = 0.0018$$
+\begin{align*}
+p\text{-value} = 2P(X \geq 1070) &= 2P\bigg(\frac{X-1000}{\sqrt{500}} \geq \frac{1070-1000}{\sqrt{500}}\bigg)\\
+&= 2P(Z \geq 3.13)\\
+&= 2(1-0.9991) \quad \text{from the z-chart}\\
+&= 0.0018
+\end{align*}
+\vspace*{-5ex}
 \item<2->[] \color{red} $p$-value $< 0.05$, so we reject $H_0$.
 \end{itemize}
 \end{frame}
